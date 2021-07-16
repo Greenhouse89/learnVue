@@ -28,7 +28,7 @@
                     key: API_KEY, 
                     type: 'video', 
                     part: 'snippet',
-                    q: searchTerm 
+                    q: searchTerm //query
                 }
             }).then(response => {
                 this.videos = response.data.items;
