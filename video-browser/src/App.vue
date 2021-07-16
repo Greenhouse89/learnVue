@@ -1,8 +1,7 @@
 <template>
 <div>
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoList></VideoList>
-
+    <VideoList : videos="videos"></VideoList>
 </div>
 </template>
 
@@ -19,6 +18,9 @@
         SearchBar,
         VideoList
     },
+    data() {
+        return { videos: [] };//add property of videos and will go up to VideoList v-bind
+ },
     methods: {
         onTermChange(searchTerm) {
             axios.get('https://www.googleapis.com/youtube/v3/search', {
@@ -28,8 +30,10 @@
                     part: 'snippet',
                     q: searchTerm 
                 }
-            }).then(response => console.log(response));
-           
+            }).then(response => {
+                this.videos = response.data.items;
+            //console.log(response));
+            });
         }
     }
 };
