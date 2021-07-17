@@ -1,5 +1,6 @@
 <template>
     <li class="list-group-item">
+        <img :src="thumbnailURL"/>
         {{ video.snippet.title}}
     </li>
     
@@ -9,7 +10,12 @@
 export default {
     name: 'VideoListItem', 
     props: {
-        video: Array
+        video: Array,
+        computed: {
+            thumbnailURL(){
+                return this.video.snippet.thumbnails.default.url;
+            }
+        }
     }
 }
 </script>
