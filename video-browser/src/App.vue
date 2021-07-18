@@ -1,7 +1,8 @@
 <template>
 <div class= "container">
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoList : videos="videos"></VideoList>
+    <VideoDetail :video="" />
+    <VideoList @videoSelect="onVideoSelect"  : videos="videos"></VideoList>
 </div>
 </template>
 
@@ -9,6 +10,7 @@
     import axios from 'axios';
     import SearchBar from './components/SearchBar.vue';
     import VideoList from './components/VideoList.vue';
+    import VideoDetail from './components/VideoDetail.vue';
     
     const API_KEY = 'AIzaSyBmgwS99wZTJH2KjEnKkxu_Dp6M2zuy0qY';
     
@@ -16,12 +18,16 @@
     name: 'App',
     components: {
         SearchBar,
-        VideoList
+        VideoList,
+        VideoDetail
     },
     data() {
         return { videos: [] };//add property of videos and will go up to VideoList v-bind
  },
     methods: {
+        onVideoSelect(video){
+            conosole.log(video);
+        },
         onTermChange(searchTerm) {
             axios.get('https://www.googleapis.com/youtube/v3/search', {
                 params: {
