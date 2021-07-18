@@ -1,7 +1,7 @@
 <template>
 <div class= "container">
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoDetail :video="" />
+    <VideoDetail :video="selectedVideo" />
     <VideoList @videoSelect="onVideoSelect"  : videos="videos"></VideoList>
 </div>
 </template>
@@ -22,11 +22,10 @@
         VideoDetail
     },
     data() {
-        return { videos: [] };//add property of videos and will go up to VideoList v-bind
- },
+        return { videos: [], selectedVideo: null };
     methods: {
-        onVideoSelect(video){
-            conosole.log(video);
+        onVideoSelect(video){ 
+            this.selectedVideo =video;
         },
         onTermChange(searchTerm) {
             axios.get('https://www.googleapis.com/youtube/v3/search', {

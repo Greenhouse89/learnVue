@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="video">
         {{ video.snippet.title}}    
     </div>        
 </template>
@@ -10,5 +10,5 @@
 export default {
     name: 'VideoDetail',
     props: ['video']
-}
+};
 </script>
